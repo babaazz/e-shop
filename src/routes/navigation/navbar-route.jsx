@@ -1,0 +1,19 @@
+import { Link, Outlet } from "react-router-dom";
+import "./navbar.styles.scss";
+import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { Fragment } from "react";
+
+const Navbar = () => {
+  return (
+    <Fragment>
+      <div className="navigation">
+        <Link className="logo-container" to={"/"}>
+          <Logo className="logo" />
+        </Link>
+      </div>
+      <Outlet />
+    </Fragment>
+  );
+};
+
+export default Navbar;
