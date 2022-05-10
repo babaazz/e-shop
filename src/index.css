@@ -4,9 +4,21 @@ body {
     "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #f4f4f4;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+.main-container {
+  max-width: 1600px;
+  margin: auto;
+  padding: 0 2rem;
 }
