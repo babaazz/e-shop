@@ -1,0 +1,27 @@
+.sign-in-container {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  h2 {
+    margin: 1rem 0;
+    font-size: 2rem;
+    font-weight: 400;
+  }
+  span {
+    font-size: 1.25rem;
+  }
+  .buttons-container {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 1440px) {
+  .sign-in-container {
+    .buttons-container {
+      flex-direction: column;
+      justify-content: space-around;
+      height: 150px;
+    }
+  }
+}

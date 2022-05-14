@@ -1,0 +1,13 @@
+.auth-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1400px;
+  gap: 5rem;
+  margin: 6rem auto;
+}
+
+@media (max-width: 1440px) {
+  .auth-container {
+    grid-template-columns: 1fr;
+  }
+}
