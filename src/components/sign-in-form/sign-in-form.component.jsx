@@ -3,7 +3,6 @@ import Button from "../button/button.component";
 import "./sign-in-form.styles.scss";
 import {
   signInWithGooglePopup,
-  createUserDocFromAuth,
   signInWithEmail,
 } from "../../utils/firebase/firebase.utils";
 
@@ -51,8 +50,7 @@ const SignInForm = () => {
   const signInGoogleUser = async (event) => {
     event.preventDefault();
     try {
-      const { user } = await signInWithGooglePopup();
-      await createUserDocFromAuth(user);
+      await signInWithGooglePopup();
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +78,7 @@ const SignInForm = () => {
 
         <div className="buttons-container">
           <Button styleType={"default"} type="submit">
-            Sign In With
+            Sign In
           </Button>
           <Button styleType={"googleSignIn"} onClick={signInGoogleUser}>
             Google Sign In
