@@ -84,3 +84,5 @@ export const authStateChangeListner = (callback) => {
   if (!callback) return;
   onAuthStateChanged(auth, callback);
 };
+
+// Products data push to database ///////////////////////////////////////////
