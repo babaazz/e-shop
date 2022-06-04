@@ -1,5 +1,5 @@
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import { Button, BUTTON_TYPE } from "../button/button.component";
 import "./sign-in-form.styles.scss";
 import {
   signInWithGooglePopup,
@@ -77,10 +77,11 @@ const SignInForm = () => {
         />
 
         <div className="buttons-container">
-          <Button styleType={"default"} type="submit">
-            Sign In
-          </Button>
-          <Button styleType={"googleSignIn"} onClick={signInGoogleUser}>
+          <Button type="submit">Sign In</Button>
+          <Button
+            buttonType={BUTTON_TYPE.googleSignIn}
+            onClick={signInGoogleUser}
+          >
             Google Sign In
           </Button>
         </div>

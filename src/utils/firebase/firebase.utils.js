@@ -8,7 +8,16 @@ import {
   signOut,
   onAuthStateChanged,
 } from "firebase/auth";
-import { doc, getDoc, setDoc, getFirestore } from "firebase/firestore";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  getFirestore,
+  writeBatch,
+  collection,
+  getDocs,
+  query,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCs55QTcqCz7eGDdSSb2GgspEcM-r4R4F0",
@@ -86,3 +95,28 @@ export const authStateChangeListner = (callback) => {
 };
 
 // Products data push to database ///////////////////////////////////////////
+
+export const addCollectionToDB = async (collectionKey, docsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+  docsToAdd.forEach((docObj) => {
+    const docRef = doc(collectionRef, docObj.title);
+    batch.set(docRef, docObj);
+  });
+  await batch.commit();
+  console.log("Done");
+};
+
+export const getCategoriesAndProducts = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+
+  const categoriesMap = querySnapshot.docs.reduce((acc, docsSnapshot) => {
+    const { title, items } = docsSnapshot.data();
+    acc[title.toLowerCase()] = items;
+    return acc;
+  }, {});
+  return categoriesMap;
+};
