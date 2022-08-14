@@ -46,18 +46,23 @@ const INITIAL_STATE = {
   cartTotal: 0,
 };
 
+const CART_ACTIONS = {
+  SET_CART_ITEMS: "SET_CART_ITEMS",
+  TOGGLE_CART: "TOGGLE_CART",
+};
+
 const cartReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "SET_CART_ITEMS":
+    case CART_ACTIONS.SET_CART_ITEMS:
       return {
         ...state,
         ...payload,
       };
-    case "TOGGLE_CART":
+    case CART_ACTIONS.TOGGLE_CART:
       return {
         ...state,
-        ...payload,
+        isCartOpen: payload,
       };
     default:
       throw new Error(`unhandled type ${type} in cartReducer`);
@@ -71,7 +76,7 @@ export const CartProvider = ({ children }) => {
   );
 
   const setIsCartOpen = (bool) => {
-    dispatch({ type: "TOGGLE_CART", payload: { isCartOpen: bool } });
+    dispatch({ type: CART_ACTIONS.TOGGLE_CART, payload: bool });
   };
 
   const updateCardItems = (newCartItems) => {
@@ -80,7 +85,7 @@ export const CartProvider = ({ children }) => {
       0
     );
     dispatch({
-      type: "SET_CART_ITEMS",
+      type: CART_ACTIONS.SET_CART_ITEMS,
       payload: { cartItems: newCartItems, cartTotal: newTotal },
     });
   };
