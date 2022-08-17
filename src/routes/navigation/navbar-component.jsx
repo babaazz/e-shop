@@ -10,7 +10,8 @@ import {
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { Fragment, useContext } from "react";
 
-import { UserContext } from "../../contexts/user.contexts";
+import { useSelector } from "react-redux";
+
 import { CartContext } from "../../contexts/cart.context";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
@@ -19,7 +20,7 @@ import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdwon.component";
 
 const Navbar = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const { isCartOpen } = useContext(CartContext);
   return (
     <Fragment>
