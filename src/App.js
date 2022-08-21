@@ -20,12 +20,12 @@ import {
 
 function App() {
   const { setIsCartOpen, isCartOpen } = useContext(CartContext);
-  const dispatch = useDispatch();
   const closeCart = () => {
     if (isCartOpen) {
       setIsCartOpen(false);
     }
   };
+  const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = authStateChangeListner(async (user) => {
       if (user) {

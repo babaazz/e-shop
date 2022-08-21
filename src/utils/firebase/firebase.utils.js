@@ -32,7 +32,7 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 
 // Firestrore Database
-export const db = getFirestore();
+export const db = getFirestore(firebaseApp);
 
 // Authentication////////////////////////////////////////////////////////
 
@@ -113,10 +113,5 @@ export const getCategoriesAndProducts = async () => {
 
   const querySnapshot = await getDocs(q);
 
-  const categoriesMap = querySnapshot.docs.reduce((acc, docsSnapshot) => {
-    const { title, items } = docsSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-  return categoriesMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };

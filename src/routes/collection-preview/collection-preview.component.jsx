@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 import CategoriesPreview from "../../components/category-preview/category-preview.component";
+import { categorySelector } from "../../store/actions/categories/categories.selector";
 import "./collection-preview.styles.scss";
 
 const CollectionPreview = () => {
-  const categoriesMap = useSelector((state) => state.categories.categoriesMap);
+  const categoriesMap = useSelector(categorySelector);
   return (
     <div className="collection-preview-container">
       {Object.keys(categoriesMap).map((title) => {

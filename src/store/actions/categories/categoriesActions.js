@@ -1,5 +1,5 @@
 import createAction from "../actionCreater";
 import * as actionType from "./categoriesActions.type";
 
-export const setCategoriesMap = (catrgoriesMap) =>
-  createAction(actionType.SET_CATEGORIES_MAP, catrgoriesMap);
+export const setCategoriesArray = (catrgoriesArray) =>
+  createAction(actionType.SET_CATEGORIES_ARRAY, catrgoriesArray);
