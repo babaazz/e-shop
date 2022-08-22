@@ -4,16 +4,16 @@ import {
   HeaderBlock,
   TotalDiv,
 } from "./checkout.styles";
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useSelector } from "react-redux";
+import {
+  selectCartTotal,
+  selectCartItems,
+} from "../../store/actions/cart/cartSelector";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
 const Checkout = () => {
-  const { cartItems } = useContext(CartContext);
-  const total = cartItems.reduce(
-    (total, { price, quantity }) => total + price * quantity,
-    0
-  );
+  const cartItems = useSelector(selectCartItems);
+  const total = useSelector(selectCartTotal);
   return (
     <CheckoutContainer>
       <CheckoutHeader>

@@ -8,11 +8,10 @@ import {
 } from "./navbar.styles.jsx";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 
 import { useSelector } from "react-redux";
-
-import { CartContext } from "../../contexts/cart.context";
+import { selectIsCartOpen } from "../../store/actions/cart/cartSelector.js";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 
@@ -21,7 +20,7 @@ import CartDropdown from "../../components/cart-dropdown/cart-dropdwon.component
 
 const Navbar = () => {
   const currentUser = useSelector((state) => state.user.currentUser);
-  const { isCartOpen } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
   return (
     <Fragment>
       <div className="main-container">

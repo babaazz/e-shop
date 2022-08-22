@@ -9,9 +9,10 @@ import Navbar from "./routes/navigation/navbar-component";
 import Shop from "./routes/shop/shop.component";
 import Authentication from "./routes/authentication/authentication.component";
 import Checkout from "./routes/checkout/checkout.component";
-import { CartContext } from "./contexts/cart.context";
-
 import { setCurrentUser } from "./store/actions/user/userActions";
+import { setIsCartOpen } from "./store/actions/cart/cartActions";
+import { useSelector } from "react-redux";
+import { selectIsCartOpen } from "./store/actions/cart/cartSelector";
 
 import {
   authStateChangeListner,
@@ -19,13 +20,13 @@ import {
 } from "./utils/firebase/firebase.utils";
 
 function App() {
-  const { setIsCartOpen, isCartOpen } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const isCartOpen = useSelector(selectIsCartOpen);
   const closeCart = () => {
     if (isCartOpen) {
-      setIsCartOpen(false);
+      dispatch(setIsCartOpen(false));
     }
   };
-  const dispatch = useDispatch();
   useEffect(() => {
     const unsubscribe = authStateChangeListner(async (user) => {
       if (user) {
