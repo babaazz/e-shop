@@ -1,5 +1,4 @@
 import { compose, applyMiddleware, createStore } from "redux";
-// import logger from "redux-logger";
 
 import rootReducer from "./rootReducer";
 
@@ -16,7 +15,9 @@ const loggerMiddleware = (store) => (next) => (action) => {
   console.log("Next State", store.getState());
 };
 
-const middlewares = [loggerMiddleware];
+const middlewares = [
+  process.env.NODE_ENV === "development" && loggerMiddleware,
+].filter(Boolean);
 
 const storeEnhancers = compose(applyMiddleware(...middlewares));
 
