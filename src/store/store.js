@@ -2,6 +2,8 @@ import { compose, applyMiddleware, createStore } from "redux";
 
 import rootReducer from "./rootReducer";
 
+import { loadState } from "../localStorage";
+
 const loggerMiddleware = (store) => (next) => (action) => {
   if (!action.type) {
     return next(action);
@@ -21,4 +23,6 @@ const middlewares = [
 
 const storeEnhancers = compose(applyMiddleware(...middlewares));
 
-export const store = createStore(rootReducer, undefined, storeEnhancers);
+const persistedState = loadState();
+
+export const store = createStore(rootReducer, persistedState, storeEnhancers);

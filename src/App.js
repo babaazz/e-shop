@@ -19,6 +19,17 @@ import {
   createUserDocFromAuth,
 } from "./utils/firebase/firebase.utils";
 
+import { store } from "./store/store";
+import { saveState } from "./localStorage";
+
+store.subscribe(() => {
+  saveState({
+    user: store.getState().user,
+    cart: store.getState().cart,
+    categories: store.getState().categories,
+  });
+});
+
 function App() {
   const dispatch = useDispatch();
   const isCartOpen = useSelector(selectIsCartOpen);
