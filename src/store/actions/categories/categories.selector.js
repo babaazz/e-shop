@@ -16,3 +16,8 @@ export const categorySelector = createSelector(
       return acc;
     }, {})
 );
+
+export const isLoadingSelector = createSelector(
+  [selectCategoriesSlice],
+  (categoriesSlice) => categoriesSlice.isLoading
+);

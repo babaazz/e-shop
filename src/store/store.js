@@ -2,6 +2,8 @@ import { compose, applyMiddleware, createStore } from "redux";
 
 import rootReducer from "./rootReducer";
 
+import thunk from "redux-thunk";
+
 import { loadState } from "../localStorage";
 
 const loggerMiddleware = (store) => (next) => (action) => {
@@ -19,6 +21,7 @@ const loggerMiddleware = (store) => (next) => (action) => {
 
 const middlewares = [
   process.env.NODE_ENV === "development" && loggerMiddleware,
+  thunk,
 ].filter(Boolean);
 
 const storeEnhancers = compose(applyMiddleware(...middlewares));
